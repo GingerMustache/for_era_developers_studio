@@ -30,40 +30,46 @@ class HomeScreen extends StatelessWidget {
                   style: sectionTextStyle,
                 ),
                 Space.v10,
-                Container(
-                  height: 300,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                          decoration: mainBoxDecoration(),
-                          width: 350,
-                          child: const Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'text Title',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 16.0,
-                                  ),
+                Stack(
+                  children: [
+                    Container(
+                      height: 300,
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                              decoration: mainBoxDecoration(
+                                image: 'assets/images/code_image.png',
+                                isFiltered: true,
+                              ),
+                              width: 350,
+                              child: const Padding(
+                                padding: EdgeInsets.only(
+                                    bottom: 40, left: 20, right: 40),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Expanded(child: Space.v20),
+                                    Text(
+                                      'Some text to test with extra line',
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: TextStyle(
+                                        color: AppColors.mainWhite,
+                                        fontSize: 25,
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                                SizedBox(height: 8.0),
-                                Text(
-                                  'text line',
-                                  style: TextStyle(fontSize: 14.0),
-                                ),
-                              ],
+                              ),
                             ),
-                          ),
-                        ),
-                      );
-                    },
-                  ),
+                          );
+                        },
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
