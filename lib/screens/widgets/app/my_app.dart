@@ -2,6 +2,7 @@ import 'package:era_developers_test_flutter/i18n/strings.g.dart';
 import 'package:era_developers_test_flutter/screens/widgets/constants.dart';
 import 'package:era_developers_test_flutter/theme/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:go_router/go_router.dart';
 
@@ -19,13 +20,19 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      statusBarIconBrightness: Brightness.dark,
+      statusBarBrightness: Brightness.dark,
+    ));
     return MaterialApp.router(
+      debugShowCheckedModeBanner: true,
       scaffoldMessengerKey: snackbarKey,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
         iconTheme: const IconThemeData(
-          color: AppColors.mainWhite,
+          color: AppColors.mainBlack,
         ),
       ),
       routerConfig: navigation.router,

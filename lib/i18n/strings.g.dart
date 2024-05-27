@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 1
-/// Strings: 12
+/// Strings: 11
 ///
-/// Built on 2024-03-06 at 15:41 UTC
+/// Built on 2024-05-27 at 15:22 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -169,10 +169,9 @@ class _StringsScreenHomeEn {
 	final Translations _root; // ignore: unused_field
 
 	// Translations
-	String get HowToCreateMeme => 'How to create meme?';
-	String get fromScratch => 'From scratch';
-	String get useSamples => 'Use samples';
-	String get tapToFighter => 'Tap to your fighter';
+	String get markAllRead => 'Mark all read';
+	String get notifications => 'Notifications';
+	String get featured => 'Featured';
 }
 
 // Path: screen.fromScratch
@@ -198,10 +197,9 @@ extension on Translations {
 	dynamic _flatMapFunction(String path) {
 		switch (path) {
 			case 'title': return 'MemeGenerator';
-			case 'screen.home.HowToCreateMeme': return 'How to create meme?';
-			case 'screen.home.fromScratch': return 'From scratch';
-			case 'screen.home.useSamples': return 'Use samples';
-			case 'screen.home.tapToFighter': return 'Tap to your fighter';
+			case 'screen.home.markAllRead': return 'Mark all read';
+			case 'screen.home.notifications': return 'Notifications';
+			case 'screen.home.featured': return 'Featured';
 			case 'screen.fromScratch.memeFromScratch': return 'Meme From Scratch';
 			case 'screen.fromScratch.typeInscription': return 'Type inscription of meme...';
 			case 'screen.fromScratch.pasteImageLink': return 'Paste image link';

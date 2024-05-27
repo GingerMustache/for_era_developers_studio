@@ -4,10 +4,9 @@ title: MemeGenerator
 
 screen:
   home:
-    HowToCreateMeme: How to create meme?
-    fromScratch: From scratch
-    useSamples: Use samples
-    tapToFighter: Tap to your fighter
+    markAllRead: Mark all read
+    notifications: Notifications
+    featured: Featured
   fromScratch:
     memeFromScratch: Meme From Scratch
     typeInscription: Type inscription of meme...
@@ -16,5 +15,4 @@ screen:
     textScaleUp: Text scale Up
     textScaleDown: Text scale Down
     uploadImage: upload image
-  useSamples:
   
