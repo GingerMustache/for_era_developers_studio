@@ -8,7 +8,7 @@ class MockNewsRepository implements AbstractNewsRepository {
 
   /// Can throw [StateError]
   @override
-  Future<dynamic> getArticle(String id) async {
+  Future<Map<String, dynamic>> getArticle(String id) async {
     return _mockArticles.firstWhere((e) => e['id'] == id);
   }
 

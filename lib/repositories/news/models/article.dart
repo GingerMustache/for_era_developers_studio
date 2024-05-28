@@ -12,3 +12,11 @@ class Article {
   final Observable<bool> readable = false.obs();
   final Observable<String?> description = Observable(null);
 }
+
+class Articles {
+  static final Articles _shared = Articles._sharedInstance();
+  Articles._sharedInstance();
+  factory Articles() => _shared;
+
+  ObservableList<Article> articleDataList = ObservableList<Article>.of([]);
+}

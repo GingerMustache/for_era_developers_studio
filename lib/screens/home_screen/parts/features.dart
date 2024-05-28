@@ -1,16 +1,5 @@
 part of '../home_screen.dart';
 
-abstract class HomeScreenModel {}
-
-class HomeScreenStore implements HomeScreenModel {
-  final Article article;
-  ObservableList<Article> articleDataList = ObservableList<Article>.of([]);
-
-  HomeScreenStore({
-    required this.article,
-  });
-}
-
 class Features extends StatelessWidget {
   const Features({
     super.key,

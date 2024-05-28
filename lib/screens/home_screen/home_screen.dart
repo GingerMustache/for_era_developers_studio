@@ -12,6 +12,22 @@ import 'package:mobx/mobx.dart';
 part 'parts/features.dart';
 part 'parts/latest_news.dart';
 
+abstract class HomeScreenModel {}
+
+class HomeScreenStore implements HomeScreenModel {
+  // final Article article;
+  ObservableList<Article> articleDataList = ObservableList<Article>.of([]);
+
+  Future<bool> setDataList() async {
+    try {} catch (e) {}
+    return true;
+  }
+
+  HomeScreenStore(
+      // required this.article,
+      );
+}
+
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
