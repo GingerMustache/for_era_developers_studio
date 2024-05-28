@@ -1,12 +1,14 @@
 import 'package:era_developers_test_flutter/i18n/strings.g.dart';
+import 'package:era_developers_test_flutter/routers/routes.dart';
 import 'package:era_developers_test_flutter/screens/widgets/app_bar/text_menu_on_tap.dart';
 import 'package:era_developers_test_flutter/screens/widgets/constants.dart';
 import 'package:era_developers_test_flutter/screens/widgets/shared_content.dart';
 import 'package:era_developers_test_flutter/theme/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
-part 'parts/latest_news.dart';
 part 'parts/features.dart';
+part 'parts/latest_news.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -17,7 +19,6 @@ class HomeScreen extends StatelessWidget {
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         actions: _actionButtons(context),
-        centerTitle: true,
         backgroundColor: Colors.transparent,
       ),
       body: Container(

@@ -44,7 +44,7 @@ class LatestNews extends StatelessWidget {
                             child: Container(
                               width: 90,
                               decoration: mainBoxDecoration(
-                                  image: 'assets/images/code_image.png',
+                                  image: imageLink,
                                   isFiltered: false,
                                   isShadow: false),
                             ),

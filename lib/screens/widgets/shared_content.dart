@@ -61,3 +61,4 @@ Decoration mainBoxDecoration({
     );
 
 const sectionTextStyle = TextStyle(fontSize: 20, fontWeight: FontWeight.w500);
+const imageLink = 'assets/images/code_image.png';
