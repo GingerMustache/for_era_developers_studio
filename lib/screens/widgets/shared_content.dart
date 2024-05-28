@@ -24,8 +24,11 @@ final scaleButtonDecoration = ButtonStyle(
   ),
 );
 
-Decoration mainBoxDecoration(
-        {required String image, required bool isFiltered}) =>
+Decoration mainBoxDecoration({
+  required String image,
+  required bool isFiltered,
+  required bool isShadow,
+}) =>
     BoxDecoration(
       color: AppColors.mainBlack,
       image: DecorationImage(
@@ -41,11 +44,13 @@ Decoration mainBoxDecoration(
       ),
       borderRadius: const BorderRadius.all(Radius.circular(12)),
       boxShadow: [
-        BoxShadow(
-            color: Colors.grey.withOpacity(0.3),
-            spreadRadius: 3,
-            blurRadius: 4,
-            offset: const Offset(5, 5)),
+        isShadow
+            ? BoxShadow(
+                color: Colors.grey.withOpacity(0.3),
+                spreadRadius: 3,
+                blurRadius: 4,
+                offset: const Offset(5, 5))
+            : BoxShadow()
       ],
       border: Border(
         top: BorderSide(

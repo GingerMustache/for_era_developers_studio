@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 1
-/// Strings: 11
+/// Strings: 14
 ///
-/// Built on 2024-05-27 at 15:22 UTC
+/// Built on 2024-05-28 at 07:41 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -147,7 +147,7 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	late final Translations _root = this; // ignore: unused_field
 
 	// Translations
-	String get title => 'MemeGenerator';
+	String get title => 'EraProject';
 	late final _StringsScreenEn screen = _StringsScreenEn._(_root);
 }
 
@@ -172,6 +172,9 @@ class _StringsScreenHomeEn {
 	String get markAllRead => 'Mark all read';
 	String get notifications => 'Notifications';
 	String get featured => 'Featured';
+	String get latestNews => 'Latest news';
+	String get testText => 'Some text to test with extra line and test ellipsis';
+	String get newsTime => '1 day ago';
 }
 
 // Path: screen.fromScratch
@@ -196,10 +199,13 @@ class _StringsScreenFromScratchEn {
 extension on Translations {
 	dynamic _flatMapFunction(String path) {
 		switch (path) {
-			case 'title': return 'MemeGenerator';
+			case 'title': return 'EraProject';
 			case 'screen.home.markAllRead': return 'Mark all read';
 			case 'screen.home.notifications': return 'Notifications';
 			case 'screen.home.featured': return 'Featured';
+			case 'screen.home.latestNews': return 'Latest news';
+			case 'screen.home.testText': return 'Some text to test with extra line and test ellipsis';
+			case 'screen.home.newsTime': return '1 day ago';
 			case 'screen.fromScratch.memeFromScratch': return 'Meme From Scratch';
 			case 'screen.fromScratch.typeInscription': return 'Type inscription of meme...';
 			case 'screen.fromScratch.pasteImageLink': return 'Paste image link';

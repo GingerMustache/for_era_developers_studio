@@ -1,4 +1,4 @@
-title: MemeGenerator
+title: EraProject
 
 ## ==== Экраны ====
 
@@ -7,6 +7,9 @@ screen:
     markAllRead: Mark all read
     notifications: Notifications
     featured: Featured
+    latestNews: Latest news
+    testText: Some text to test with extra line and test ellipsis
+    newsTime: 1 day ago
   fromScratch:
     memeFromScratch: Meme From Scratch
     typeInscription: Type inscription of meme...
