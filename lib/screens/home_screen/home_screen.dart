@@ -1,4 +1,5 @@
 import 'package:era_developers_test_flutter/i18n/strings.g.dart';
+import 'package:era_developers_test_flutter/repositories/news/models/article.dart';
 import 'package:era_developers_test_flutter/routers/routes.dart';
 import 'package:era_developers_test_flutter/screens/widgets/app_bar/text_menu_on_tap.dart';
 import 'package:era_developers_test_flutter/screens/widgets/constants.dart';
@@ -6,6 +7,7 @@ import 'package:era_developers_test_flutter/screens/widgets/shared_content.dart'
 import 'package:era_developers_test_flutter/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:mobx/mobx.dart';
 
 part 'parts/features.dart';
 part 'parts/latest_news.dart';
