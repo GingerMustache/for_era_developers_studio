@@ -21,64 +21,71 @@ class LatestNews extends StatelessWidget {
               itemBuilder: (BuildContext context, int index) {
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Badge(
-                    offset: const Offset(-10, 0),
-                    label: Text(t.screen.home.badgeText),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: AppColors.mainWhite,
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(12)),
-                        boxShadow: [
-                          BoxShadow(
-                              color: Colors.grey.withOpacity(0.2),
-                              spreadRadius: 3,
-                              blurRadius: 4,
-                              offset: const Offset(5, 5)),
-                        ],
-                      ),
-                      height: 100,
-                      child: Padding(
-                        padding: const EdgeInsets.only(right: 40),
-                        child: Row(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 15,
-                                vertical: 20,
-                              ),
-                              child: Container(
-                                width: 90,
-                                decoration: mainBoxDecoration(
-                                    image: model.articleList[index].imageUrl,
-                                    isFiltered: false,
-                                    isShadow: false),
-                              ),
-                            ),
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    model.articleList[index].title,
-                                    maxLines: 2,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: const TextStyle(
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.w500),
-                                  ),
-                                  Space.v5,
-                                  Text(
-                                    timeago.format(model
-                                        .articleList[index].publicationDate),
-                                    style: const TextStyle(
-                                        color: Colors.grey, fontSize: 10),
-                                  )
-                                ],
-                              ),
-                            ),
+                  child: Observer(
+                    builder: (_) => Badge(
+                      offset:
+                          model.haveRead.value ? null : const Offset(-10, 0),
+                      label: model.haveRead.value
+                          ? null
+                          : Text(t.screen.home.badgeText),
+                      textColor: AppColors.mainBlack,
+                      backgroundColor: AppColors.mainWhite,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: AppColors.mainWhite,
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(12)),
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.grey.withOpacity(0.2),
+                                spreadRadius: 3,
+                                blurRadius: 4,
+                                offset: const Offset(5, 5)),
                           ],
+                        ),
+                        height: 100,
+                        child: Padding(
+                          padding: const EdgeInsets.only(right: 40),
+                          child: Row(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 15,
+                                  vertical: 20,
+                                ),
+                                child: Container(
+                                  width: 90,
+                                  decoration: mainBoxDecoration(
+                                      image: model.articleList[index].imageUrl,
+                                      isFiltered: false,
+                                      isShadow: false),
+                                ),
+                              ),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      model.articleList[index].title,
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: const TextStyle(
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w500),
+                                    ),
+                                    Space.v5,
+                                    Text(
+                                      timeago.format(model
+                                          .articleList[index].publicationDate),
+                                      style: const TextStyle(
+                                          color: Colors.grey, fontSize: 10),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),

@@ -1,15 +1,16 @@
-import 'package:era_developers_test_flutter/repositories/news/abstract_news_repository.dart';
 import 'package:era_developers_test_flutter/repositories/news/models/article.dart';
+import 'package:mobx/mobx.dart';
 
-abstract class ArticlesProviderModel {}
+abstract class ArticlesProviderModel {
+  void setArticlesDone();
+}
 
-class ArticlesProvider {
-  final Article article;
+class ArticlesProvider implements ArticlesProviderModel {
+  final Articles articles;
 
-  final AbstractNewsRepository newsRepository;
+  ArticlesProvider({required this.articles});
 
-  ArticlesProvider({
-    required this.article,
-    required this.newsRepository,
-  });
+  @override
+  void setArticlesDone() => runInAction(
+      () => articles.articleList.map((article) => article.haveRead = true));
 }

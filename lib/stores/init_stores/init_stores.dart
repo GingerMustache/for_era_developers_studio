@@ -10,5 +10,6 @@ void initStore(DiContainerProvider diContainer) {
       ));
   getIt.registerLazySingleton<HomeScreenModel>(() => HomeScreenStore(
         articles: diContainer.makeArticles(),
+        articlesProvider: diContainer.makeArticlesProvider(),
       ));
 }

@@ -2,6 +2,7 @@ import 'package:era_developers_test_flutter/data/remote_data/remote_data.dart';
 import 'package:era_developers_test_flutter/repositories/news/abstract_news_repository.dart';
 import 'package:era_developers_test_flutter/repositories/news/mock_news_repository.dart';
 import 'package:era_developers_test_flutter/repositories/news/models/article.dart';
+import 'package:era_developers_test_flutter/repositories/news/providers/article_provider.dart';
 import 'package:era_developers_test_flutter/routers/routes.dart';
 import 'package:era_developers_test_flutter/screens/widgets/app/my_app.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +12,7 @@ abstract class DiContainerProvider {
   AbstractNewsRepository makeNewsRepository();
   DataClientModel makeDataClient();
   Articles makeArticles();
+  ArticlesProviderModel makeArticlesProvider();
 }
 
 class DiContainer implements DiContainerProvider {
@@ -20,6 +22,9 @@ class DiContainer implements DiContainerProvider {
   Widget makeApp() => MyApp(navigation: _mainNavigation);
   @override
   Articles makeArticles() => Articles();
+  @override
+  ArticlesProviderModel makeArticlesProvider() =>
+      ArticlesProvider(articles: makeArticles());
   @override
   DataClientModel makeDataClient() =>
       DataClient(repository: makeNewsRepository());
