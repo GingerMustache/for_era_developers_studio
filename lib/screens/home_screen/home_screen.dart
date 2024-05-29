@@ -35,7 +35,6 @@ class HomeScreenStore implements HomeScreenModel {
   List<Article> get articleList => articles.articleList;
   @override
   int get articleListLength => articles.articleList.length;
-
   @override
   bool get haveRead => articles.articlesHaveRead.value;
 

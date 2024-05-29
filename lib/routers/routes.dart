@@ -44,7 +44,10 @@ class MainNavigation implements MyAppNavigation {
         name: mainRoutesName(MainRoutes.newsScreen),
         path: mainRoutesPath(MainRoutes.newsScreen),
         builder: (BuildContext context, GoRouterState state) {
-          return const NewsScreen();
+          final newsId = state.extra;
+          return NewsScreen(
+            newsId: newsId.toString(),
+          );
         },
       ),
     ],

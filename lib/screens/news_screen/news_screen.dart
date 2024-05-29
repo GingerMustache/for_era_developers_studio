@@ -5,10 +5,15 @@ import 'package:era_developers_test_flutter/theme/colors.dart';
 import 'package:flutter/material.dart';
 
 class NewsScreen extends StatelessWidget {
-  const NewsScreen({super.key});
+  const NewsScreen({
+    super.key,
+    required this.newsId,
+  });
+  final String? newsId;
 
   @override
   Widget build(BuildContext context) {
+    print(newsId);
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -30,7 +35,7 @@ class NewsScreen extends StatelessWidget {
                     BlendMode.darken,
                   ),
                   fit: BoxFit.cover,
-                  image: const AssetImage(imageLink),
+                  image: const NetworkImage(imageLink),
                 ),
                 borderRadius: const BorderRadius.only(
                   bottomLeft: Radius.circular(12),

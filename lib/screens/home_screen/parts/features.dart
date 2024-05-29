@@ -26,8 +26,8 @@ class Features extends StatelessWidget {
               return GestureDetector(
                 behavior: HitTestBehavior.opaque,
                 onTap: () => context.pushNamed(
-                  mainRoutesName(MainRoutes.newsScreen),
-                ),
+                    mainRoutesName(MainRoutes.newsScreen),
+                    extra: model.articleList[index].id),
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
