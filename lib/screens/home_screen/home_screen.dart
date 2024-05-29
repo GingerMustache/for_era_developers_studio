@@ -65,7 +65,7 @@ List<Widget> _actionButtons(BuildContext context) {
 
   return [
     TextMenuOnTap(
-      onTap: () => markAllRead(),
+      onTap: () {},
       text: t.screen.home.notifications,
     ),
     TextMenuOnTap(
