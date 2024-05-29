@@ -7,6 +7,8 @@ import 'package:era_developers_test_flutter/screens/widgets/shared_content.dart'
 import 'package:era_developers_test_flutter/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:timeago/timeago.dart' as timeago;
+// import 'package:timeago/timeago_en.dart';
 
 part 'parts/features.dart';
 part 'parts/latest_news.dart';

@@ -7,6 +7,8 @@ class LatestNews extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final model = getIt<HomeScreenModel>();
+
     return SizedBox(
       height: 390,
       child: Column(
@@ -15,7 +17,7 @@ class LatestNews extends StatelessWidget {
           Text(t.screen.home.latestNews, style: sectionTextStyle),
           Expanded(
             child: ListView.builder(
-              itemCount: 10,
+              itemCount: model.articleListLength,
               itemBuilder: (BuildContext context, int index) {
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -44,7 +46,7 @@ class LatestNews extends StatelessWidget {
                             child: Container(
                               width: 90,
                               decoration: mainBoxDecoration(
-                                  image: imageLink,
+                                  image: model.articleList[index].imageUrl,
                                   isFiltered: false,
                                   isShadow: false),
                             ),
@@ -55,7 +57,7 @@ class LatestNews extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  t.screen.home.testText,
+                                  model.articleList[index].title,
                                   maxLines: 2,
                                   overflow: TextOverflow.ellipsis,
                                   style: const TextStyle(
@@ -64,7 +66,8 @@ class LatestNews extends StatelessWidget {
                                 ),
                                 Space.v5,
                                 Text(
-                                  t.screen.home.newsTime,
+                                  timeago.format(
+                                      model.articleList[index].publicationDate),
                                   style: const TextStyle(
                                       color: Colors.grey, fontSize: 10),
                                 )
