@@ -5,18 +5,11 @@ abstract class ArticlesProviderModel {}
 
 class ArticlesProvider {
   final Article article;
-  final Articles articles;
+
   final AbstractNewsRepository newsRepository;
 
   ArticlesProvider({
     required this.article,
-    required this.articles,
     required this.newsRepository,
   });
-
-  Future<bool> getData() async {
-    articles.articleDataList
-        .addAll((await newsRepository.getLatestArticles()).toList());
-    return true;
-  }
 }
