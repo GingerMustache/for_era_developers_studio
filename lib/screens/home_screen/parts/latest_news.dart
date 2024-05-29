@@ -22,8 +22,8 @@ class LatestNews extends StatelessWidget {
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Badge(
-                    offset: Offset(-10, 0),
-                    label: Text('done'),
+                    offset: const Offset(-10, 0),
+                    label: Text(t.screen.home.badgeText),
                     child: Container(
                       decoration: BoxDecoration(
                         color: AppColors.mainWhite,

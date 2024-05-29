@@ -10,6 +10,7 @@ screen:
     latestNews: Latest news
     testText: Some text to test with extra line and test ellipsis
     newsTime: 1 day ago
+    badgeText: done
   fromScratch:
     memeFromScratch: Meme From Scratch
     typeInscription: Type inscription of meme...

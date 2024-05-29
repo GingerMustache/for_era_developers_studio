@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 1
-/// Strings: 14
+/// Strings: 15
 ///
-/// Built on 2024-05-28 at 07:41 UTC
+/// Built on 2024-05-29 at 14:44 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -175,6 +175,7 @@ class _StringsScreenHomeEn {
 	String get latestNews => 'Latest news';
 	String get testText => 'Some text to test with extra line and test ellipsis';
 	String get newsTime => '1 day ago';
+	String get badgeText => 'done';
 }
 
 // Path: screen.fromScratch
@@ -206,6 +207,7 @@ extension on Translations {
 			case 'screen.home.latestNews': return 'Latest news';
 			case 'screen.home.testText': return 'Some text to test with extra line and test ellipsis';
 			case 'screen.home.newsTime': return '1 day ago';
+			case 'screen.home.badgeText': return 'done';
 			case 'screen.fromScratch.memeFromScratch': return 'Meme From Scratch';
 			case 'screen.fromScratch.typeInscription': return 'Type inscription of meme...';
 			case 'screen.fromScratch.pasteImageLink': return 'Paste image link';

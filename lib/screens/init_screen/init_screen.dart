@@ -14,6 +14,7 @@ class InitScreenStore implements InitScreenModel {
   final DataClientModel dataClient;
   final Articles articles;
 
+  @override
   Future<bool> setData() =>
       dataClient.getFeaturedArticles(articles.articleList);
 
