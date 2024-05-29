@@ -1,4 +1,5 @@
 import 'package:era_developers_test_flutter/i18n/strings.g.dart';
+import 'package:era_developers_test_flutter/repositories/news/models/article.dart';
 import 'package:era_developers_test_flutter/routers/routes.dart';
 import 'package:era_developers_test_flutter/screens/widgets/app_bar/text_menu_on_tap.dart';
 import 'package:era_developers_test_flutter/screens/widgets/constants.dart';
@@ -10,9 +11,21 @@ import 'package:go_router/go_router.dart';
 part 'parts/features.dart';
 part 'parts/latest_news.dart';
 
-abstract class HomeScreenModel {}
+abstract class HomeScreenModel {
+  List<Article> get articleList;
+  int get articleListLength;
+}
 
-class HomeScreenStore implements HomeScreenModel {}
+class HomeScreenStore implements HomeScreenModel {
+  final Articles articles;
+
+  HomeScreenStore({required this.articles});
+
+  @override
+  List<Article> get articleList => articles.articleList;
+  @override
+  int get articleListLength => articles.articleList.length;
+}
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});

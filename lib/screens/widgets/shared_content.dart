@@ -32,16 +32,15 @@ Decoration mainBoxDecoration({
     BoxDecoration(
       color: AppColors.mainBlack,
       image: DecorationImage(
-        colorFilter: isFiltered
-            ? ColorFilter.mode(
-                Colors.black
-                    .withOpacity(0.7), // Adjust the opacity for shadow effect
-                BlendMode.darken,
-              )
-            : null,
-        fit: BoxFit.cover,
-        image: AssetImage(image),
-      ),
+          colorFilter: isFiltered
+              ? ColorFilter.mode(
+                  Colors.black
+                      .withOpacity(0.7), // Adjust the opacity for shadow effect
+                  BlendMode.darken,
+                )
+              : null,
+          fit: BoxFit.cover,
+          image: NetworkImage(image)),
       borderRadius: const BorderRadius.all(Radius.circular(12)),
       boxShadow: [
         isShadow
@@ -50,7 +49,7 @@ Decoration mainBoxDecoration({
                 spreadRadius: 3,
                 blurRadius: 4,
                 offset: const Offset(5, 5))
-            : BoxShadow()
+            : const BoxShadow()
       ],
       border: Border(
         top: BorderSide(
@@ -61,4 +60,4 @@ Decoration mainBoxDecoration({
     );
 
 const sectionTextStyle = TextStyle(fontSize: 20, fontWeight: FontWeight.w500);
-const imageLink = 'assets/images/code_image.png';
+const imageLink = 'https://i.ibb.co/Jk8FMMp/unsplash-Oqtaf-YT5k-Tw.jpg';

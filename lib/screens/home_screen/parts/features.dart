@@ -7,6 +7,8 @@ class Features extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final model = getIt<HomeScreenModel>();
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -19,6 +21,7 @@ class Features extends StatelessWidget {
           height: 300,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
+            itemCount: model.articleListLength,
             itemBuilder: (BuildContext context, int index) {
               return GestureDetector(
                 behavior: HitTestBehavior.opaque,
@@ -29,7 +32,7 @@ class Features extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
                     decoration: mainBoxDecoration(
-                      image: imageLink,
+                      image: model.articleList[index].imageUrl,
                       isFiltered: true,
                       isShadow: true,
                     ),
@@ -42,7 +45,7 @@ class Features extends StatelessWidget {
                         children: [
                           const Expanded(child: Space.v20),
                           Text(
-                            t.screen.home.testText,
+                            model.articleList[index].title,
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                             style: const TextStyle(
