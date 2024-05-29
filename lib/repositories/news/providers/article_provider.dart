@@ -11,6 +11,10 @@ class ArticlesProvider implements ArticlesProviderModel {
   ArticlesProvider({required this.articles});
 
   @override
-  void setArticlesDone() => runInAction(
-      () => articles.articleList.map((article) => article.haveRead = true));
+  void setArticlesDone() {
+    runInAction(() {
+      articles.articleList.map((article) => article.haveRead = true);
+      articles.articlesHaveRead.value = true;
+    });
+  }
 }

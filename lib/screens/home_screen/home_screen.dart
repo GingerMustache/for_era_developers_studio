@@ -9,7 +9,6 @@ import 'package:era_developers_test_flutter/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:go_router/go_router.dart';
-import 'package:mobx/mobx.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 part 'parts/features.dart';
@@ -18,7 +17,7 @@ part 'parts/latest_news.dart';
 abstract class HomeScreenModel {
   List<Article> get articleList;
   int get articleListLength;
-  Observable<bool> get haveRead;
+  bool get haveRead;
 
   void setArticlesHaveRead();
 }
@@ -38,8 +37,7 @@ class HomeScreenStore implements HomeScreenModel {
   int get articleListLength => articles.articleList.length;
 
   @override
-  Observable<bool> get haveRead =>
-      articles.articleList.every((article) => article.haveRead = true).obs();
+  bool get haveRead => articles.articlesHaveRead.value;
 
   @override
   void setArticlesHaveRead() => articlesProvider.setArticlesDone();

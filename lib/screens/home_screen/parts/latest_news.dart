@@ -23,11 +23,9 @@ class LatestNews extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: Observer(
                     builder: (_) => Badge(
-                      offset:
-                          model.haveRead.value ? null : const Offset(-10, 0),
-                      label: model.haveRead.value
-                          ? null
-                          : Text(t.screen.home.badgeText),
+                      offset: model.haveRead ? const Offset(-10, 0) : null,
+                      label:
+                          model.haveRead ? Text(t.screen.home.badgeText) : null,
                       textColor: AppColors.mainBlack,
                       backgroundColor: AppColors.mainWhite,
                       child: Container(

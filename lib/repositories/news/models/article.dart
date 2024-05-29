@@ -24,4 +24,5 @@ class Articles {
   factory Articles() => _shared;
 
   final ObservableList<Article> articleList = ObservableList<Article>();
+  final Observable<bool> articlesHaveRead = false.obs();
 }
