@@ -15,5 +15,5 @@ void initStore(DiContainerProvider diContainer) {
       ));
   getIt.registerLazySingleton<NewsScreenModel>(() => NewsScreenStore(
       dataClient: diContainer.makeDataClient(),
-      article: diContainer.makeArticle()));
+      articleHolder: diContainer.makeArticleHolder()));
 }

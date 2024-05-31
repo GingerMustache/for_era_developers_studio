@@ -13,6 +13,7 @@ abstract class DiContainerProvider {
   DataClientModel makeDataClient();
   Articles makeArticles();
   Article makeArticle();
+  ArticleHolder makeArticleHolder();
   ArticlesProviderModel makeArticlesProvider();
 }
 
@@ -23,6 +24,8 @@ class DiContainer implements DiContainerProvider {
   Widget makeApp() => MyApp(navigation: _mainNavigation);
   @override
   Articles makeArticles() => Articles();
+  @override
+  ArticleHolder makeArticleHolder() => ArticleHolder();
   @override
   Article makeArticle() => Article(
         id: '',

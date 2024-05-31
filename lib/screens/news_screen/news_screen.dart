@@ -1,5 +1,4 @@
 import 'package:era_developers_test_flutter/data/remote_data/remote_data.dart';
-import 'package:era_developers_test_flutter/i18n/strings.g.dart';
 import 'package:era_developers_test_flutter/repositories/news/models/article.dart';
 import 'package:era_developers_test_flutter/screens/widgets/constants.dart';
 import 'package:era_developers_test_flutter/screens/widgets/shared_content.dart';
@@ -7,27 +6,31 @@ import 'package:era_developers_test_flutter/theme/colors.dart';
 import 'package:flutter/material.dart';
 
 abstract class NewsScreenModel {
-  Future<Article?> getArticle(String id);
-  Article get article;
+  Future<bool> getArticle(String id);
   String get image;
+  String get description;
+  String get title;
 }
 
 class NewsScreenStore implements NewsScreenModel {
-  final Article _article;
+  final ArticleHolder articleHolder;
   final DataClientModel dataClient;
 
   NewsScreenStore({
-    article,
+    required this.articleHolder,
     required this.dataClient,
-  }) : _article = article;
+  });
 
   @override
-  Article get article => _article;
+  String get image => articleHolder.imageUrl.value;
   @override
-  String get image => article.imageUrl;
+  String get description => articleHolder.description.value ?? '';
+  @override
+  String get title => articleHolder.title.value;
 
   @override
-  Future<Article?> getArticle(String id) => dataClient.getArticle(id);
+  Future<bool> getArticle(String id) =>
+      dataClient.getArticle(articleHolder: articleHolder, id: id);
 }
 
 class NewsScreen extends StatelessWidget {
@@ -61,6 +64,7 @@ class NewsScreen extends StatelessWidget {
                 children: [
                   Container(
                     height: 450,
+                    width: double.infinity,
                     decoration: BoxDecoration(
                       color: AppColors.mainBlack,
                       image: DecorationImage(
@@ -98,7 +102,7 @@ class NewsScreen extends StatelessWidget {
                         children: [
                           const Expanded(child: Space.v20),
                           Text(
-                            t.screen.home.testText,
+                            model.title,
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                             style: const TextStyle(
@@ -117,19 +121,15 @@ class NewsScreen extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Text(
-                              '''Please excuse the interruption.
-            
-            Due to Google's efforts to maintain a “safe ads ecosystem” for its advertisers, publishers and users from fraud and bad experiences, Google has placed restrictions on our ad serving that limit our ability to provide free VPN services. 
-            Regrettably, this is beyond our control.  
-            To continue to enjoy ForestVPN without interruptions, please upgrade to our Premium version.''',
-                              style: TextStyle(fontSize: 15),
+                            Text(
+                              model.description,
+                              style: const TextStyle(fontSize: 15),
                             ),
                             Space.v10,
                             Container(
                               height: 300,
                               decoration: mainBoxDecoration(
-                                image: imageLink,
+                                image: model.image,
                                 isFiltered: false,
                                 isShadow: false,
                               ),
