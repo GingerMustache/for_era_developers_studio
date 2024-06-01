@@ -1,4 +1,3 @@
-import 'package:era_developers_test_flutter/common/data/repositories/news/models/article.dart';
 import 'package:era_developers_test_flutter/features/news/domain/entity/articles.dart';
 import 'package:mobx/mobx.dart';
 

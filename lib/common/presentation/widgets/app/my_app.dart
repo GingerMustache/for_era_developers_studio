@@ -1,6 +1,6 @@
-import 'package:era_developers_test_flutter/common/aplication/app_settings.dart';
+import 'package:era_developers_test_flutter/common/application/app_settings.dart';
 import 'package:era_developers_test_flutter/common/constants/constants.dart';
-import 'package:era_developers_test_flutter/i18n/strings.g.dart';
+import 'package:era_developers_test_flutter/common/localization/i18n/strings.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';

@@ -1,6 +1,6 @@
 import 'package:era_developers_test_flutter/common/constants/constants.dart';
 import 'package:era_developers_test_flutter/common/services/di_container/di_container.dart';
-import 'package:era_developers_test_flutter/presentation/screens/home_screen/home_screen_model.dart';
+import 'package:era_developers_test_flutter/presentation/screens/home_screen/home_screen.dart';
 import 'package:era_developers_test_flutter/presentation/screens/init_screen/init_screen.dart';
 import 'package:era_developers_test_flutter/presentation/screens/news_screen/news_screen.dart';
 

@@ -1,7 +1,6 @@
-import 'package:era_developers_test_flutter/common/aplication/app_settings.dart';
+import 'package:era_developers_test_flutter/common/application/app_settings.dart';
 import 'package:era_developers_test_flutter/common/constants/constants.dart';
 import 'package:era_developers_test_flutter/common/data/remote/remote_data.dart';
-import 'package:era_developers_test_flutter/common/data/repositories/news/models/article.dart';
 import 'package:era_developers_test_flutter/features/news/domain/entity/article_holder.dart';
 import 'package:flutter/material.dart';
 

@@ -1,6 +1,6 @@
-import 'package:era_developers_test_flutter/di_container/di_container.dart';
-import 'package:era_developers_test_flutter/i18n/strings.g.dart';
-import 'package:era_developers_test_flutter/stores/init_stores/init_stores.dart';
+import 'package:era_developers_test_flutter/common/services/di_container/di_container.dart';
+import 'package:era_developers_test_flutter/common/localization/i18n/strings.g.dart';
+import 'package:era_developers_test_flutter/common/services/stores/init_stores.dart';
 import 'package:flutter/material.dart';
 
 void main() async {
