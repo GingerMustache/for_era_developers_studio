@@ -1,7 +1,7 @@
-import 'package:era_developers_test_flutter/data/remote_data/remote_data.dart';
-import 'package:era_developers_test_flutter/repositories/news/models/article.dart';
-import 'package:era_developers_test_flutter/screens/widgets/constants.dart';
-import 'package:era_developers_test_flutter/screens/widgets/shared_content.dart';
+import 'package:era_developers_test_flutter/common/aplication/app_settings.dart';
+import 'package:era_developers_test_flutter/common/constants/constants.dart';
+import 'package:era_developers_test_flutter/common/data/remote/remote_data.dart';
+import 'package:era_developers_test_flutter/common/data/repositories/news/models/article.dart';
 import 'package:era_developers_test_flutter/theme/colors.dart';
 import 'package:flutter/material.dart';
 

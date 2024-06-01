@@ -1,10 +1,10 @@
+import 'package:era_developers_test_flutter/common/aplication/app_settings.dart';
+import 'package:era_developers_test_flutter/common/constants/constants.dart';
 import 'package:era_developers_test_flutter/i18n/strings.g.dart';
-import 'package:era_developers_test_flutter/repositories/news/models/article.dart';
-import 'package:era_developers_test_flutter/repositories/news/providers/article_provider.dart';
+import 'package:era_developers_test_flutter/common/data/repositories/news/models/article.dart';
+import 'package:era_developers_test_flutter/common/data/repositories/news/providers/article_provider.dart';
 import 'package:era_developers_test_flutter/routers/routes.dart';
-import 'package:era_developers_test_flutter/screens/widgets/app_bar/text_menu_on_tap.dart';
-import 'package:era_developers_test_flutter/screens/widgets/constants.dart';
-import 'package:era_developers_test_flutter/screens/widgets/shared_content.dart';
+import 'package:era_developers_test_flutter/common/widgets/app_bar/text_menu_on_tap.dart';
 import 'package:era_developers_test_flutter/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';

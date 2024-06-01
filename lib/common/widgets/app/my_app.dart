@@ -1,5 +1,5 @@
+import 'package:era_developers_test_flutter/common/constants/constants.dart';
 import 'package:era_developers_test_flutter/i18n/strings.g.dart';
-import 'package:era_developers_test_flutter/screens/widgets/constants.dart';
 import 'package:era_developers_test_flutter/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

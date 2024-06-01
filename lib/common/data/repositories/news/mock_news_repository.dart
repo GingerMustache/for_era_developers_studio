@@ -1,5 +1,5 @@
-import 'package:era_developers_test_flutter/repositories/news/abstract_news_repository.dart';
-import 'package:era_developers_test_flutter/repositories/news/models/article.dart';
+import 'package:era_developers_test_flutter/common/data/repositories/news/abstract_news_repository.dart';
+import 'package:era_developers_test_flutter/common/data/repositories/news/models/article.dart';
 
 class MockNewsRepository implements AbstractNewsRepository {
   @override

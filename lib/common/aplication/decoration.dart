@@ -1,10 +1,4 @@
-import 'package:era_developers_test_flutter/theme/colors.dart';
-import 'package:flutter/material.dart';
-
-const mainPadding = EdgeInsets.symmetric(
-  horizontal: 20,
-  vertical: 20,
-);
+part of "app_settings.dart";
 
 Decoration gradientDecoration() => const BoxDecoration(
       gradient: LinearGradient(
@@ -16,13 +10,6 @@ Decoration gradientDecoration() => const BoxDecoration(
         ],
       ),
     );
-
-final scaleButtonDecoration = ButtonStyle(
-  foregroundColor: const MaterialStatePropertyAll(AppColors.mainWhite),
-  backgroundColor: MaterialStatePropertyAll(
-    Colors.white.withAlpha(40),
-  ),
-);
 
 Decoration mainBoxDecoration({
   required String image,
@@ -58,6 +45,3 @@ Decoration mainBoxDecoration({
         ),
       ),
     );
-
-const sectionTextStyle = TextStyle(fontSize: 20, fontWeight: FontWeight.w500);
-const imageLink = 'https://i.ibb.co/Jk8FMMp/unsplash-Oqtaf-YT5k-Tw.jpg';
