@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+part of "app_settings.dart";
 
 class AppColors {
   static const Color mainWhite = Colors.white;

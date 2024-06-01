@@ -2,10 +2,10 @@ import 'package:era_developers_test_flutter/common/aplication/app_settings.dart'
 import 'package:era_developers_test_flutter/common/constants/constants.dart';
 import 'package:era_developers_test_flutter/i18n/strings.g.dart';
 import 'package:era_developers_test_flutter/common/data/repositories/news/models/article.dart';
-import 'package:era_developers_test_flutter/common/data/repositories/news/providers/article_provider.dart';
-import 'package:era_developers_test_flutter/routers/routes.dart';
-import 'package:era_developers_test_flutter/common/widgets/app_bar/text_menu_on_tap.dart';
-import 'package:era_developers_test_flutter/theme/colors.dart';
+import 'package:era_developers_test_flutter/features/news/domain/providers/article_provider.dart';
+import 'package:era_developers_test_flutter/common/routing/routes.dart';
+import 'package:era_developers_test_flutter/common/presentation/app_bar/text_menu_on_tap.dart';
+import 'package:era_developers_test_flutter/presentation/screens/home_screen/home_screen_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:go_router/go_router.dart';
@@ -13,34 +13,6 @@ import 'package:timeago/timeago.dart' as timeago;
 
 part 'parts/features.dart';
 part 'parts/latest_news.dart';
-
-abstract class HomeScreenModel {
-  List<Article> get articleList;
-  int get articleListLength;
-  bool get haveRead;
-
-  void setArticlesHaveRead();
-}
-
-class HomeScreenStore implements HomeScreenModel {
-  final Articles articles;
-  final ArticlesProviderModel articlesProvider;
-
-  HomeScreenStore({
-    required this.articles,
-    required this.articlesProvider,
-  });
-
-  @override
-  List<Article> get articleList => articles.articleList;
-  @override
-  int get articleListLength => articles.articleList.length;
-  @override
-  bool get haveRead => articles.articlesHaveRead.value;
-
-  @override
-  void setArticlesHaveRead() => articlesProvider.setArticlesDone();
-}
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});

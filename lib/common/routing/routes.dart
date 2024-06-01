@@ -1,9 +1,8 @@
 import 'package:era_developers_test_flutter/common/constants/constants.dart';
-import 'package:era_developers_test_flutter/screens/home_screen/home_screen.dart';
-import 'package:era_developers_test_flutter/screens/init_screen/init_screen.dart';
-import 'package:era_developers_test_flutter/screens/news_screen/news_screen.dart';
-import 'package:era_developers_test_flutter/common/widgets/app/my_app.dart';
-
+import 'package:era_developers_test_flutter/presentation/screens/home_screen/home_screen.dart';
+import 'package:era_developers_test_flutter/presentation/screens/init_screen/init_screen.dart';
+import 'package:era_developers_test_flutter/presentation/screens/news_screen/news_screen.dart';
+import 'package:era_developers_test_flutter/common/presentation/widgets/app/my_app.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 

@@ -2,9 +2,11 @@ import 'package:era_developers_test_flutter/common/data/remote/remote_data.dart'
 import 'package:era_developers_test_flutter/common/data/repositories/news/abstract_news_repository.dart';
 import 'package:era_developers_test_flutter/common/data/repositories/news/mock_news_repository.dart';
 import 'package:era_developers_test_flutter/common/data/repositories/news/models/article.dart';
-import 'package:era_developers_test_flutter/common/data/repositories/news/providers/article_provider.dart';
-import 'package:era_developers_test_flutter/routers/routes.dart';
-import 'package:era_developers_test_flutter/common/widgets/app/my_app.dart';
+import 'package:era_developers_test_flutter/features/news/domain/entity/article_holder.dart';
+import 'package:era_developers_test_flutter/features/news/domain/entity/articles.dart';
+import 'package:era_developers_test_flutter/features/news/domain/providers/article_provider.dart';
+import 'package:era_developers_test_flutter/common/routing/routes.dart';
+import 'package:era_developers_test_flutter/common/presentation/widgets/app/my_app.dart';
 import 'package:flutter/material.dart';
 
 abstract class DiContainerProvider {
