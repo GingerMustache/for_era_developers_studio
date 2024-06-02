@@ -1,0 +1,33 @@
+part of '../home_screen.dart';
+
+Padding featuresNewsView(HomeScreenModel model, int index) {
+  return Padding(
+    padding: const EdgeInsets.all(8.0),
+    child: Container(
+      decoration: mainBoxDecoration(
+        image: model.articleList[index].imageUrl,
+        isFiltered: true,
+        isShadow: true,
+      ),
+      width: 350,
+      child: Padding(
+        padding: const EdgeInsets.only(bottom: 40, left: 20, right: 50),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Expanded(child: Space.v20),
+            Text(
+              model.articleList[index].title,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(
+                color: AppColors.mainWhite,
+                fontSize: 25,
+              ),
+            ),
+          ],
+        ),
+      ),
+    ),
+  );
+}
