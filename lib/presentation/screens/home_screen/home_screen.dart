@@ -37,17 +37,11 @@ class _HomeScreenState extends State<HomeScreen> {
     double currentScrollOffset = _scrollController.offset;
 
     if (currentScrollOffset > _previousScrollOffset) {
-      setState(() {
-        _scrollDirection = 'Down';
-      });
+      setState(() => _scrollDirection = 'Down');
     } else if (currentScrollOffset == 0) {
-      setState(() {
-        _scrollDirection = '0';
-      });
-    } else if (currentScrollOffset < _previousScrollOffset) {
-      setState(() {
-        _scrollDirection = 'Scrolling Up = $currentScrollOffset';
-      });
+      setState(() => _scrollDirection = '0');
+    } else {
+      setState(() => _scrollDirection = 'Up ');
     }
 
     _previousScrollOffset = currentScrollOffset;
@@ -63,7 +57,6 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final model = getIt<HomeScreenModel>();
-    print(_scrollDirection);
 
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -84,9 +77,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   style: sectionTextStyle,
                 ),
                 AnimatedSwitcher(
-                  duration: const Duration(microseconds: 5000),
-                  child: _scrollDirection != '0'
+                  switchInCurve: Curves.easeInOut,
+                  switchOutCurve: Curves.easeInOut,
+                  duration: const Duration(milliseconds: 350),
+                  child: ['0', ''].contains(_scrollDirection)
                       ? SizedBox(
+                          key: const ValueKey('horizontal'),
                           height: 300,
                           child: ListView.builder(
                             scrollDirection: Axis.horizontal,
@@ -104,8 +100,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         )
                       : SizedBox(
                           height: 100,
+                          key: const ValueKey('vertical'),
                           child: ListView.builder(
-                            itemCount: model.articleListLength,
+                            itemCount: 1,
                             itemBuilder: (BuildContext context, int index) {
                               return GestureDetector(
                                 behavior: HitTestBehavior.opaque,
@@ -117,6 +114,16 @@ class _HomeScreenState extends State<HomeScreen> {
                             },
                           ),
                         ),
+                  transitionBuilder: (child, animation) {
+                    return FadeTransition(
+                      opacity: animation,
+                      child: SizeTransition(
+                        sizeFactor: animation,
+                        axis: Axis.vertical,
+                        child: child,
+                      ),
+                    );
+                  },
                 ),
                 Space.v10,
                 Text(
