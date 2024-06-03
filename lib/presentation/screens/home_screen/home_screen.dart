@@ -99,7 +99,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         )
                       : SizedBox(
-                          height: 100,
+                          height: 120,
                           key: const ValueKey('vertical'),
                           child: ListView.builder(
                             itemCount: 1,

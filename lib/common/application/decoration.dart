@@ -35,7 +35,7 @@ Decoration mainBoxDecoration({
                 color: Colors.grey.withOpacity(0.3),
                 spreadRadius: 3,
                 blurRadius: 4,
-                offset: const Offset(5, 5))
+                offset: const Offset(0, 3))
             : const BoxShadow()
       ],
       border: Border(

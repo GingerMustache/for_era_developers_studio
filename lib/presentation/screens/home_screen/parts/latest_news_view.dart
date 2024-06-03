@@ -18,7 +18,7 @@ Padding latestNewsView(HomeScreenModel model, int index) {
                   color: Colors.grey.withOpacity(0.2),
                   spreadRadius: 3,
                   blurRadius: 4,
-                  offset: const Offset(5, 5)),
+                  offset: const Offset(0, 5)),
             ],
           ),
           height: 100,
