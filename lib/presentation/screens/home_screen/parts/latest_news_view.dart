@@ -2,7 +2,7 @@ part of '../home_screen.dart';
 
 Padding latestNewsView(HomeScreenModel model, int index) {
   return Padding(
-    padding: const EdgeInsets.all(8.0),
+    padding: const EdgeInsets.only(top: 20, bottom: 5.0),
     child: Observer(
       builder: (_) => Badge(
         offset: model.haveRead ? const Offset(-10, 0) : null,
@@ -48,15 +48,17 @@ Padding latestNewsView(HomeScreenModel model, int index) {
                         model.articleList[index].title,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
-                            fontSize: 15, fontWeight: FontWeight.w500),
+                        style: TextStyles.medium.copyWith(
+                          color: AppColors.mainBlack,
+                          fontSize: 16,
+                        ),
                       ),
                       Space.v5,
                       Text(
                         timeago
                             .format(model.articleList[index].publicationDate),
                         style:
-                            const TextStyle(color: Colors.grey, fontSize: 10),
+                            const TextStyle(color: Colors.grey, fontSize: 12),
                       )
                     ],
                   ),

@@ -1,3 +1,4 @@
+import 'package:era_developers_test_flutter/common/typography/typography.dart';
 import 'package:flutter/material.dart';
 
 class TextMenuOnTap extends StatelessWidget {
@@ -21,10 +22,7 @@ class TextMenuOnTap extends StatelessWidget {
         onTap: () => onTap(),
         child: Text(
           text,
-          style: const TextStyle(
-            fontSize: 17,
-            fontWeight: FontWeight.w400,
-          ),
+          style: TextStyles.medium.copyWith(fontSize: 18),
         ),
       ),
     );
