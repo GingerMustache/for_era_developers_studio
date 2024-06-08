@@ -7,6 +7,7 @@ import 'package:era_developers_test_flutter/common/routing/routes.dart';
 import 'package:era_developers_test_flutter/features/news/domain/entity/articles.dart';
 import 'package:era_developers_test_flutter/features/news/domain/providers/article_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:go_router/go_router.dart';
 import 'package:timeago/timeago.dart' as timeago;
@@ -24,8 +25,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final ScrollController _scrollController = ScrollController();
-  double _previousScrollOffset = 0;
-  String _scrollDirection = '';
+  bool _isScrollingDown = false;
 
   @override
   void initState() {
@@ -34,17 +34,13 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void _scrollListener() {
-    double currentScrollOffset = _scrollController.offset;
-
-    if (currentScrollOffset > _previousScrollOffset) {
-      setState(() => _scrollDirection = 'Down');
-    } else if (currentScrollOffset == 0) {
-      setState(() => _scrollDirection = '0');
-    } else {
-      setState(() => _scrollDirection = 'Up ');
+    if (_scrollController.position.userScrollDirection ==
+        ScrollDirection.reverse) {
+      setState(() => _isScrollingDown = true);
+    } else if (_scrollController.position.userScrollDirection ==
+        ScrollDirection.forward) {
+      setState(() => _isScrollingDown = false);
     }
-
-    _previousScrollOffset = currentScrollOffset;
   }
 
   @override
@@ -61,92 +57,107 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        actions: _actionButtons(context),
+        actions: _actionButtons(context, model),
         backgroundColor: Colors.transparent,
       ),
       body: Container(
         color: AppColors.mainWhite,
         child: SafeArea(
-          child: Padding(
-            padding: mainPadding,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Text(
-                  t.screen.home.featured,
-                  style: sectionTextStyle,
-                ),
-                AnimatedSwitcher(
-                  switchInCurve: Curves.easeInOut,
-                  switchOutCurve: Curves.easeInOut,
-                  duration: const Duration(milliseconds: 350),
-                  child: ['0', ''].contains(_scrollDirection)
-                      ? SizedBox(
-                          key: const ValueKey('horizontal'),
-                          height: 300,
-                          child: ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            itemCount: model.articleListLength,
-                            itemBuilder: (BuildContext context, int index) {
-                              return GestureDetector(
-                                behavior: HitTestBehavior.opaque,
-                                onTap: () => context.pushNamed(
-                                    mainRoutesName(MainRoutes.newsScreen),
-                                    extra: model.articleList[index].id),
-                                child: featuresNewsView(model, index),
-                              );
-                            },
-                          ),
-                        )
-                      : SizedBox(
-                          height: 120,
-                          key: const ValueKey('vertical'),
-                          child: ListView.builder(
-                            itemCount: 1,
-                            itemBuilder: (BuildContext context, int index) {
-                              return GestureDetector(
-                                behavior: HitTestBehavior.opaque,
-                                onTap: () => context.pushNamed(
-                                    mainRoutesName(MainRoutes.newsScreen),
-                                    extra: model.articleList[index].id),
-                                child: latestNewsView(model, index),
-                              );
-                            },
-                          ),
-                        ),
-                  transitionBuilder: (child, animation) {
-                    return FadeTransition(
-                      opacity: animation,
-                      child: SizeTransition(
-                        sizeFactor: animation,
-                        axis: Axis.vertical,
-                        child: child,
+          child: CustomScrollView(
+            controller: _scrollController,
+            slivers: [
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: mainPadding,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Text(
+                        t.screen.home.featured,
+                        style: sectionTextStyle,
                       ),
-                    );
-                  },
+                      AnimatedSwitcher(
+                        switchInCurve: Curves.easeInOut,
+                        switchOutCurve: Curves.easeInOut,
+                        duration: const Duration(milliseconds: 350),
+                        child: _isScrollingDown
+                            ? SizedBox(
+                                key: const ValueKey('vertical'),
+                                height: 120,
+                                child: ListView.builder(
+                                  itemCount: 1,
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    return GestureDetector(
+                                      behavior: HitTestBehavior.opaque,
+                                      onTap: () => context.pushNamed(
+                                          mainRoutesName(MainRoutes.newsScreen),
+                                          extra: model.articleList[index].id),
+                                      child: latestNewsView(model, index),
+                                    );
+                                  },
+                                ),
+                              )
+                            : SizedBox(
+                                key: const ValueKey('horizontal'),
+                                height: 300,
+                                child: ListView.builder(
+                                  scrollDirection: Axis.horizontal,
+                                  itemCount: model.articleListLength,
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    return GestureDetector(
+                                      behavior: HitTestBehavior.opaque,
+                                      onTap: () => context.pushNamed(
+                                          mainRoutesName(MainRoutes.newsScreen),
+                                          extra: model.articleList[index].id),
+                                      child: featuresNewsView(model, index),
+                                    );
+                                  },
+                                ),
+                              ),
+                        transitionBuilder: (child, animation) {
+                          return FadeTransition(
+                            opacity: animation,
+                            child: SizeTransition(
+                              sizeFactor: animation,
+                              axis: Axis.vertical,
+                              child: child,
+                            ),
+                          );
+                        },
+                      ),
+                    ],
+                  ),
                 ),
-                Space.v10,
-                Text(
-                  t.screen.home.latestNews,
-                  style: sectionTextStyle,
+              ),
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Text(
+                    t.screen.home.latestNews,
+                    style: sectionTextStyle,
+                  ),
                 ),
-                Expanded(
-                  child: ListView.builder(
-                    controller: _scrollController,
-                    itemCount: model.articleListLength,
-                    itemBuilder: (BuildContext context, int index) {
-                      return GestureDetector(
+              ),
+              SliverList(
+                delegate: SliverChildBuilderDelegate(
+                  (BuildContext context, int index) {
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: GestureDetector(
                         behavior: HitTestBehavior.opaque,
                         onTap: () => context.pushNamed(
                             mainRoutesName(MainRoutes.newsScreen),
                             extra: model.articleList[index].id),
                         child: latestNewsView(model, index),
-                      );
-                    },
-                  ),
+                      ),
+                    );
+                  },
+                  childCount: model.articleListLength,
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
@@ -154,9 +165,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-List<Widget> _actionButtons(BuildContext context) {
-  final model = getIt<HomeScreenModel>();
-
+List<Widget> _actionButtons(BuildContext context, HomeScreenModel model) {
   void markAllRead() => model.setArticlesHaveRead();
 
   return [
