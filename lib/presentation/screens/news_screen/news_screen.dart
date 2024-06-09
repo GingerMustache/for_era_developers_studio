@@ -5,33 +5,7 @@ import 'package:era_developers_test_flutter/features/news/domain/entity/article_
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-abstract class NewsScreenModel {
-  Future<bool> getArticle(String id);
-  String get image;
-  String get description;
-  String get title;
-}
-
-class NewsScreenStore implements NewsScreenModel {
-  final ArticleHolder articleHolder;
-  final DataClientModel dataClient;
-
-  NewsScreenStore({
-    required this.articleHolder,
-    required this.dataClient,
-  });
-
-  @override
-  String get image => articleHolder.imageUrl.value;
-  @override
-  String get description => articleHolder.description.value ?? '';
-  @override
-  String get title => articleHolder.title.value;
-
-  @override
-  Future<bool> getArticle(String id) =>
-      dataClient.getArticle(articleHolder: articleHolder, id: id);
-}
+part 'news_screen_model.dart';
 
 class NewsScreen extends StatelessWidget {
   const NewsScreen({
