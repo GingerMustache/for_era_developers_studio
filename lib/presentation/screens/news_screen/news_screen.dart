@@ -3,6 +3,7 @@ import 'package:era_developers_test_flutter/common/constants/constants.dart';
 import 'package:era_developers_test_flutter/common/data/remote/remote_data.dart';
 import 'package:era_developers_test_flutter/features/news/domain/entity/article_holder.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 abstract class NewsScreenModel {
   Future<bool> getArticle(String id);
@@ -53,92 +54,172 @@ class NewsScreen extends StatelessWidget {
         } else {
           return Scaffold(
             extendBodyBehindAppBar: true,
-            appBar: AppBar(
-              backgroundColor: Colors.transparent,
-              iconTheme: const IconThemeData(color: AppColors.mainWhite),
-            ),
             body: Container(
               color: AppColors.mainWhite,
-              child: Column(
-                children: [
-                  Container(
-                    height: 450,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: AppColors.mainBlack,
-                      image: DecorationImage(
-                        colorFilter: ColorFilter.mode(
-                          Colors.black.withOpacity(
-                              0.7), // Adjust the opacity for shadow effect
-                          BlendMode.darken,
+              child: CustomScrollView(
+                slivers: [
+                  SliverAppBar(
+                    leading: IconButton(
+                      onPressed: () => context.pop(),
+                      icon: Icon(Icons.arrow_back),
+                      color: AppColors.mainWhite,
+                    ),
+                    pinned: true,
+                    backgroundColor: AppColors.mainBlack,
+                    expandedHeight: 350,
+                    flexibleSpace: FlexibleSpaceBar(
+                      centerTitle: true,
+                      titlePadding: const EdgeInsets.only(
+                        left: 25,
+                        bottom: 20,
+                      ),
+                      title: Text(
+                        model.title,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
+                          color: AppColors.mainWhite,
+                          fontSize: 18,
                         ),
-                        fit: BoxFit.cover,
-                        image: NetworkImage(model.image),
                       ),
-                      borderRadius: const BorderRadius.only(
-                        bottomLeft: Radius.circular(12),
-                        bottomRight: Radius.circular(12),
-                      ),
-                      boxShadow: [
-                        BoxShadow(
-                            color: Colors.grey.withOpacity(0.3),
-                            spreadRadius: 3,
-                            blurRadius: 4,
-                            offset: const Offset(5, 5))
-                      ],
-                      border: Border(
-                        top: BorderSide(
-                          color: AppColors.withAlpha,
-                          width: 1,
+                      background: Container(
+                        height: 450,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          color: AppColors.mainBlack,
+                          image: DecorationImage(
+                            colorFilter: ColorFilter.mode(
+                              Colors.black.withOpacity(
+                                  0.7), // Adjust the opacity for shadow effect
+                              BlendMode.darken,
+                            ),
+                            fit: BoxFit.cover,
+                            image: NetworkImage(model.image),
+                          ),
+                          borderRadius: const BorderRadius.only(
+                            bottomLeft: Radius.circular(12),
+                            bottomRight: Radius.circular(12),
+                          ),
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.grey.withOpacity(0.3),
+                                spreadRadius: 3,
+                                blurRadius: 4,
+                                offset: const Offset(5, 5))
+                          ],
+                          border: Border(
+                            top: BorderSide(
+                              color: AppColors.withAlpha,
+                              width: 1,
+                            ),
+                          ),
                         ),
                       ),
                     ),
+                  ),
+                  SliverToBoxAdapter(
                     child: Padding(
-                      padding: const EdgeInsets.only(
-                          bottom: 40, left: 20, right: 50),
+                      padding: mainPadding,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Expanded(child: Space.v20),
                           Text(
-                            model.title,
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                            style: const TextStyle(
-                              color: AppColors.mainWhite,
-                              fontSize: 25,
-                            ),
+                            model.description,
+                            style: const TextStyle(fontSize: 15),
                           ),
+                          Space.v10,
+                          Container(
+                            height: 300,
+                            decoration: mainBoxDecoration(
+                              image: model.image,
+                              isFiltered: false,
+                              isShadow: false,
+                            ),
+                          )
                         ],
                       ),
                     ),
                   ),
-                  Expanded(
-                    child: SingleChildScrollView(
-                      child: Padding(
-                        padding: mainPadding,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              model.description,
-                              style: const TextStyle(fontSize: 15),
-                            ),
-                            Space.v10,
-                            Container(
-                              height: 300,
-                              decoration: mainBoxDecoration(
-                                image: model.image,
-                                isFiltered: false,
-                                isShadow: false,
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
                 ],
+                // child: Column(
+                // children: [
+                // Container(
+                //   height: 450,
+                //   width: double.infinity,
+                //   decoration: BoxDecoration(
+                //     color: AppColors.mainBlack,
+                //     image: DecorationImage(
+                //       colorFilter: ColorFilter.mode(
+                //         Colors.black.withOpacity(
+                //             0.7), // Adjust the opacity for shadow effect
+                //         BlendMode.darken,
+                //       ),
+                //       fit: BoxFit.cover,
+                //       image: NetworkImage(model.image),
+                //     ),
+                //     borderRadius: const BorderRadius.only(
+                //       bottomLeft: Radius.circular(12),
+                //       bottomRight: Radius.circular(12),
+                //     ),
+                //     boxShadow: [
+                //       BoxShadow(
+                //           color: Colors.grey.withOpacity(0.3),
+                //           spreadRadius: 3,
+                //           blurRadius: 4,
+                //           offset: const Offset(5, 5))
+                //     ],
+                //     border: Border(
+                //       top: BorderSide(
+                //         color: AppColors.withAlpha,
+                //         width: 1,
+                //       ),
+                //     ),
+                //   ),
+                //   child: Padding(
+                //     padding: const EdgeInsets.only(
+                //         bottom: 40, left: 20, right: 50),
+                //     child: Column(
+                //       crossAxisAlignment: CrossAxisAlignment.start,
+                //       children: [
+                //         const Expanded(child: Space.v20),
+                //         Text(
+                //           model.title,
+                //           maxLines: 2,
+                //           overflow: TextOverflow.ellipsis,
+                //           style: const TextStyle(
+                //             color: AppColors.mainWhite,
+                //             fontSize: 25,
+                //           ),
+                //         ),
+                //       ],
+                //     ),
+                //   ),
+                // ),
+                // Expanded(
+                //   child: SingleChildScrollView(
+                //     child: Padding(
+                //       padding: mainPadding,
+                //       child: Column(
+                //         crossAxisAlignment: CrossAxisAlignment.start,
+                //         children: [
+                //           Text(
+                //             model.description,
+                //             style: const TextStyle(fontSize: 15),
+                //           ),
+                //           Space.v10,
+                //           Container(
+                //             height: 300,
+                //             decoration: mainBoxDecoration(
+                //               image: model.image,
+                //               isFiltered: false,
+                //               isShadow: false,
+                //             ),
+                //           )
+                //         ],
+                //       ),
+                //     ),
+                //   ),
+                // ),
               ),
             ),
           );
