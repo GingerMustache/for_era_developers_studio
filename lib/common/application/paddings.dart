@@ -1,6 +1,7 @@
 part of "app_settings.dart";
 
-const mainPadding = EdgeInsets.symmetric(
-  horizontal: 28,
-  vertical: 20,
+const mainPadding = EdgeInsets.only(
+  left: 28,
+  right: 28,
+  top: 20,
 );

@@ -62,7 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
         extendBodyBehindAppBar: true,
         appBar: AppBar(
           actions: _actionButtons(context, model),
-          backgroundColor: Colors.transparent,
+          backgroundColor: AppColors.mainWhite,
         ),
         body: Container(
           color: AppColors.mainWhite,
@@ -137,14 +137,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                 ),
-                SliverToBoxAdapter(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 28),
-                    child: Text(
-                      t.screen.home.latestNews,
-                      style: sectionTextStyle,
-                    ),
-                  ),
+                SliverPersistentHeader(
+                  pinned: true,
+                  delegate: MySliverPersistentHeaderDelegate(),
                 ),
                 SliverList(
                   delegate: SliverChildBuilderDelegate(
@@ -186,4 +181,36 @@ List<Widget> _actionButtons(BuildContext context, HomeScreenModel model) {
       text: t.screen.home.markAllRead,
     ),
   ];
+}
+
+class MySliverPersistentHeaderDelegate extends SliverPersistentHeaderDelegate {
+  @override
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    return Container(
+      color: AppColors.mainWhite,
+      height: 80,
+      child: Padding(
+        padding: const EdgeInsets.only(left: 28.0),
+        child: Align(
+          alignment: Alignment.centerLeft,
+          child: Text(
+            t.screen.home.latestNews,
+            style: sectionTextStyle,
+          ),
+        ),
+      ),
+    );
+  }
+
+  @override
+  double get maxExtent => 80.0; // Maximum height of the header
+
+  @override
+  double get minExtent => 80.0; // Minimum height of the header (when sticky)
+
+  @override
+  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
+    return false; // Rebuild only if delegate changes
+  }
 }

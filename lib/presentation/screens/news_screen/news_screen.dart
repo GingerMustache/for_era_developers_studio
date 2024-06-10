@@ -35,7 +35,7 @@ class NewsScreen extends StatelessWidget {
                   SliverAppBar(
                     leading: IconButton(
                       onPressed: () => context.pop(),
-                      icon: Icon(Icons.arrow_back),
+                      icon: const Icon(Icons.arrow_back),
                       color: AppColors.mainWhite,
                     ),
                     pinned: true,

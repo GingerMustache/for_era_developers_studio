@@ -2,7 +2,7 @@ part of '../home_screen.dart';
 
 Padding latestNewsView(HomeScreenModel model, int index) {
   return Padding(
-    padding: const EdgeInsets.only(top: 20, bottom: 5.0),
+    padding: const EdgeInsets.only(bottom: 5.0),
     child: Observer(
       builder: (_) => Badge(
         offset: model.haveRead ? const Offset(-10, 0) : null,
