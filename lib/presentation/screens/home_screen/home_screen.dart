@@ -204,13 +204,13 @@ class MySliverPersistentHeaderDelegate extends SliverPersistentHeaderDelegate {
   }
 
   @override
-  double get maxExtent => 80.0; // Maximum height of the header
+  double get maxExtent => 80.0;
 
   @override
-  double get minExtent => 80.0; // Minimum height of the header (when sticky)
+  double get minExtent => 80.0;
 
   @override
   bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
-    return false; // Rebuild only if delegate changes
+    return false;
   }
 }
