@@ -9,6 +9,7 @@ import 'package:era_developers_test_flutter/features/news/domain/entity/articles
 import 'package:era_developers_test_flutter/features/news/domain/providers/article_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:go_router/go_router.dart';
 import 'package:timeago/timeago.dart' as timeago;
@@ -16,6 +17,8 @@ import 'package:timeago/timeago.dart' as timeago;
 part 'home_screen_model.dart';
 part 'parts/features_news_view.dart';
 part 'parts/latest_news_view.dart';
+
+const Duration _duration = Duration(seconds: 1);
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -76,7 +79,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       Text(
                         t.screen.home.featured,
                         style: sectionTextStyle,
-                      ),
+                      ).animate().fadeIn().slideX(duration: _duration),
                       AnimatedSwitcher(
                         switchInCurve: Curves.easeInOut,
                         switchOutCurve: Curves.easeInOut,
@@ -191,7 +194,7 @@ class MySliverPersistentHeaderDelegate extends SliverPersistentHeaderDelegate {
           child: Text(
             t.screen.home.latestNews,
             style: sectionTextStyle,
-          ),
+          ).animate().fadeIn().slideX(duration: _duration),
         ),
       ),
     );
