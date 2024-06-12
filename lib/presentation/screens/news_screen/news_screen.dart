@@ -1,11 +1,17 @@
+import 'dart:ui';
+
 import 'package:era_developers_test_flutter/common/application/app_settings.dart';
 import 'package:era_developers_test_flutter/common/constants/constants.dart';
 import 'package:era_developers_test_flutter/common/data/remote/remote_data.dart';
+import 'package:era_developers_test_flutter/common/typography/typography.dart';
 import 'package:era_developers_test_flutter/features/news/domain/entity/article_holder.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
 
 part 'news_screen_model.dart';
+
+const Duration _duration = Duration(milliseconds: 800);
 
 class NewsScreen extends StatelessWidget {
   const NewsScreen({
@@ -22,8 +28,11 @@ class NewsScreen extends StatelessWidget {
       future: model.getArticle(newsId ?? ''),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(
-            child: CircularProgressIndicator(),
+          return BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+            child: const Center(
+              child: CircularProgressIndicator(),
+            ),
           );
         } else {
           return Scaffold(
@@ -31,8 +40,10 @@ class NewsScreen extends StatelessWidget {
             body: Container(
               color: AppColors.mainWhite,
               child: CustomScrollView(
+                physics: const BouncingScrollPhysics(),
                 slivers: [
                   SliverAppBar(
+                    stretch: true,
                     leading: IconButton(
                       onPressed: () => context.pop(),
                       icon: const Icon(Icons.arrow_back),
@@ -51,14 +62,13 @@ class NewsScreen extends StatelessWidget {
                         model.title,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
-                          color: AppColors.mainWhite,
-                          fontSize: 18,
-                        ),
-                      ),
+                        style: TextStyles.medium.copyWith(fontSize: 20),
+                      ).animate().fadeIn().slideX(
+                            duration: _duration,
+                          ),
                       background: Container(
-                        height: 450,
-                        width: double.infinity,
+                        // height: 450,
+                        // width: double.infinity,
                         decoration: BoxDecoration(
                           color: AppColors.mainBlack,
                           image: DecorationImage(
@@ -69,10 +79,6 @@ class NewsScreen extends StatelessWidget {
                             fit: BoxFit.cover,
                             image: NetworkImage(model.image),
                           ),
-                          borderRadius: const BorderRadius.only(
-                            bottomLeft: Radius.circular(12),
-                            bottomRight: Radius.circular(12),
-                          ),
                           boxShadow: [
                             BoxShadow(
                                 color: Colors.grey.withOpacity(0.3),
@@ -80,26 +86,24 @@ class NewsScreen extends StatelessWidget {
                                 blurRadius: 4,
                                 offset: const Offset(5, 5))
                           ],
-                          border: Border(
-                            top: BorderSide(
-                              color: AppColors.withAlpha,
-                              width: 1,
-                            ),
-                          ),
                         ),
                       ),
                     ),
                   ),
                   SliverToBoxAdapter(
                     child: Padding(
-                      padding: mainPadding,
+                      padding: mainPadding.copyWith(
+                        bottom: 20,
+                      ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
                             model.description,
-                            style: const TextStyle(fontSize: 15),
-                          ),
+                            style: TextStyles.regular.copyWith(fontSize: 16),
+                          )
+                              .animate()
+                              .fadeIn(duration: const Duration(seconds: 1)),
                           Space.v10,
                           Container(
                             height: 300,
@@ -108,7 +112,8 @@ class NewsScreen extends StatelessWidget {
                               isFiltered: false,
                               isShadow: false,
                             ),
-                          )
+                          ).animate().fadeIn(
+                              duration: const Duration(milliseconds: 700)),
                         ],
                       ),
                     ),

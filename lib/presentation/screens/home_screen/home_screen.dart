@@ -11,7 +11,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:go_router/go_router.dart';
-import 'package:pixel_perfect/pixel_perfect.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 part 'home_screen_model.dart';
@@ -56,110 +55,105 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     final model = getIt<HomeScreenModel>();
 
-    return PixelPerfect(
-      assetPath: 'assets/pixel_perfect/home_screen.png',
-      child: Scaffold(
-        extendBodyBehindAppBar: true,
-        appBar: AppBar(
-          actions: _actionButtons(context, model),
-          backgroundColor: AppColors.mainWhite,
-        ),
-        body: Container(
-          color: AppColors.mainWhite,
-          child: SafeArea(
-            child: CustomScrollView(
-              controller: _scrollController,
-              slivers: [
-                SliverToBoxAdapter(
-                  child: Padding(
-                    padding: mainPadding,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        Text(
-                          t.screen.home.featured,
-                          style: sectionTextStyle,
-                        ),
-                        AnimatedSwitcher(
-                          switchInCurve: Curves.easeInOut,
-                          switchOutCurve: Curves.easeInOut,
-                          duration: const Duration(milliseconds: 350),
-                          child: _isScrollingDown
-                              ? SizedBox(
-                                  key: const ValueKey('vertical'),
-                                  height: 120,
-                                  child: ListView.builder(
-                                    itemCount: 1,
-                                    itemBuilder:
-                                        (BuildContext context, int index) {
-                                      return GestureDetector(
-                                        behavior: HitTestBehavior.opaque,
-                                        onTap: () => context.pushNamed(
-                                            mainRoutesName(
-                                                MainRoutes.newsScreen),
-                                            extra: model.articleList[index].id),
-                                        child: latestNewsView(model, index),
-                                      );
-                                    },
-                                  ),
-                                )
-                              : SizedBox(
-                                  key: const ValueKey('horizontal'),
-                                  height: 300,
-                                  child: ListView.builder(
-                                    scrollDirection: Axis.horizontal,
-                                    itemCount: model.articleListLength,
-                                    itemBuilder:
-                                        (BuildContext context, int index) {
-                                      return GestureDetector(
-                                        behavior: HitTestBehavior.opaque,
-                                        onTap: () => context.pushNamed(
-                                            mainRoutesName(
-                                                MainRoutes.newsScreen),
-                                            extra: model.articleList[index].id),
-                                        child: featuresNewsView(model, index),
-                                      );
-                                    },
-                                  ),
+    return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        actions: _actionButtons(context, model),
+        backgroundColor: AppColors.mainWhite,
+      ),
+      body: Container(
+        color: AppColors.mainWhite,
+        child: SafeArea(
+          child: CustomScrollView(
+            controller: _scrollController,
+            slivers: [
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: mainPadding,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Text(
+                        t.screen.home.featured,
+                        style: sectionTextStyle,
+                      ),
+                      AnimatedSwitcher(
+                        switchInCurve: Curves.easeInOut,
+                        switchOutCurve: Curves.easeInOut,
+                        duration: const Duration(milliseconds: 350),
+                        child: _isScrollingDown
+                            ? SizedBox(
+                                key: const ValueKey('vertical'),
+                                height: 120,
+                                child: ListView.builder(
+                                  itemCount: 1,
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    return GestureDetector(
+                                      behavior: HitTestBehavior.opaque,
+                                      onTap: () => context.pushNamed(
+                                          mainRoutesName(MainRoutes.newsScreen),
+                                          extra: model.articleList[index].id),
+                                      child: latestNewsView(model, index),
+                                    );
+                                  },
                                 ),
-                          transitionBuilder: (child, animation) {
-                            return FadeTransition(
-                              opacity: animation,
-                              child: SizeTransition(
-                                sizeFactor: animation,
-                                axis: Axis.vertical,
-                                child: child,
+                              )
+                            : SizedBox(
+                                key: const ValueKey('horizontal'),
+                                height: 300,
+                                child: ListView.builder(
+                                  scrollDirection: Axis.horizontal,
+                                  itemCount: model.articleListLength,
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    return GestureDetector(
+                                      behavior: HitTestBehavior.opaque,
+                                      onTap: () => context.pushNamed(
+                                          mainRoutesName(MainRoutes.newsScreen),
+                                          extra: model.articleList[index].id),
+                                      child: featuresNewsView(model, index),
+                                    );
+                                  },
+                                ),
                               ),
-                            );
-                          },
-                        ),
-                      ],
-                    ),
+                        transitionBuilder: (child, animation) {
+                          return FadeTransition(
+                            opacity: animation,
+                            child: SizeTransition(
+                              sizeFactor: animation,
+                              axis: Axis.vertical,
+                              child: child,
+                            ),
+                          );
+                        },
+                      ),
+                    ],
                   ),
                 ),
-                SliverPersistentHeader(
-                  pinned: true,
-                  delegate: MySliverPersistentHeaderDelegate(),
+              ),
+              SliverPersistentHeader(
+                pinned: true,
+                delegate: MySliverPersistentHeaderDelegate(),
+              ),
+              SliverList(
+                delegate: SliverChildBuilderDelegate(
+                  (BuildContext context, int index) {
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 28),
+                      child: GestureDetector(
+                        behavior: HitTestBehavior.opaque,
+                        onTap: () => context.pushNamed(
+                            mainRoutesName(MainRoutes.newsScreen),
+                            extra: model.articleList[index].id),
+                        child: latestNewsView(model, index),
+                      ),
+                    );
+                  },
+                  childCount: model.articleListLength,
                 ),
-                SliverList(
-                  delegate: SliverChildBuilderDelegate(
-                    (BuildContext context, int index) {
-                      return Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 28),
-                        child: GestureDetector(
-                          behavior: HitTestBehavior.opaque,
-                          onTap: () => context.pushNamed(
-                              mainRoutesName(MainRoutes.newsScreen),
-                              extra: model.articleList[index].id),
-                          child: latestNewsView(model, index),
-                        ),
-                      );
-                    },
-                    childCount: model.articleListLength,
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
