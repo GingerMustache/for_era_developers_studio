@@ -21,8 +21,7 @@ Decoration mainBoxDecoration({
       image: DecorationImage(
           colorFilter: isFiltered
               ? ColorFilter.mode(
-                  Colors.black
-                      .withOpacity(0.7), // Adjust the opacity for shadow effect
+                  Colors.black.withOpacity(0.7),
                   BlendMode.darken,
                 )
               : null,

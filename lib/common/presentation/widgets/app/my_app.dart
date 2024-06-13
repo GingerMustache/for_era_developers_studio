@@ -26,17 +26,16 @@ class MyApp extends StatelessWidget {
       statusBarBrightness: Brightness.dark,
     ));
     return MaterialApp.router(
-      debugShowCheckedModeBanner: true,
+      debugShowCheckedModeBanner: false,
       scaffoldMessengerKey: snackbarKey,
       theme: ThemeData(
-        // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
         iconTheme: const IconThemeData(
           color: AppColors.mainBlack,
         ),
       ),
       routerConfig: navigation.router,
-      locale: TranslationProvider.of(context).flutterLocale, // use provider
+      locale: TranslationProvider.of(context).flutterLocale,
       supportedLocales: AppLocaleUtils.supportedLocales,
       localizationsDelegates: GlobalMaterialLocalizations.delegates,
     );

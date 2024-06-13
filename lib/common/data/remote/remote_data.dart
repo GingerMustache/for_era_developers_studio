@@ -21,6 +21,7 @@ class DataClient implements DataClientModel {
   @override
   Future<bool> getFeaturedArticles(List<Article> articleList) async {
     try {
+      await Future.delayed(const Duration(seconds: 3));
       articleList.addAll(await repository.getFeaturedArticles());
     } catch (e) {
       devtools.log(e.toString());
@@ -32,6 +33,7 @@ class DataClient implements DataClientModel {
   @override
   Future<bool> getLatestArticles(List<Article> articleList) async {
     try {
+      await Future.delayed(const Duration(seconds: 3));
       articleList.addAll(await repository.getLatestArticles());
     } catch (e) {
       devtools.log(e.toString());
@@ -44,6 +46,7 @@ class DataClient implements DataClientModel {
   Future<bool> getArticle(
       {required ArticleHolder articleHolder, required String id}) async {
     try {
+      await Future.delayed(const Duration(seconds: 3));
       final Article article = (await repository.getArticle(id));
       articleHolder.fromArticle(article);
       return true;
