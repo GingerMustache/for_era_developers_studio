@@ -30,6 +30,7 @@ class MyApp extends StatelessWidget {
       scaffoldMessengerKey: snackbarKey,
       theme: ThemeData(
         useMaterial3: true,
+        indicatorColor: AppColors.mainBlack,
         iconTheme: const IconThemeData(
           color: AppColors.mainBlack,
         ),

@@ -5,7 +5,7 @@ import 'package:era_developers_test_flutter/common/data/repositories/news/models
 import 'package:era_developers_test_flutter/features/news/domain/entity/article_holder.dart';
 
 abstract class DataClientModel {
-  Future<bool> getFeaturedArticles(List<Article> articleList);
+  Future<void> getFeaturedArticles(List<Article> articleList);
   Future<bool> getLatestArticles(List<Article> articleList);
   Future<bool> getArticle(
       {required ArticleHolder articleHolder, required String id});
@@ -19,15 +19,13 @@ class DataClient implements DataClientModel {
   });
 
   @override
-  Future<bool> getFeaturedArticles(List<Article> articleList) async {
+  Future<void> getFeaturedArticles(List<Article> articleList) async {
     try {
       await Future.delayed(const Duration(seconds: 3));
       articleList.addAll(await repository.getFeaturedArticles());
     } catch (e) {
       devtools.log(e.toString());
-      return false;
     }
-    return true;
   }
 
   @override

@@ -16,7 +16,7 @@ class InitScreen extends StatefulWidget {
 }
 
 class InitScreenState extends State<InitScreen> {
-  Future<bool>? _data;
+  Future<void>? _data;
   final model = getIt<InitScreenModel>();
 
   @override
@@ -30,7 +30,7 @@ class InitScreenState extends State<InitScreen> {
         future: _data!.whenComplete(
           () => context.goNamed(mainRoutesName(MainRoutes.home)),
         ),
-        builder: (context, AsyncSnapshot<bool> snapshot) => Stack(
+        builder: (context, AsyncSnapshot<void> snapshot) => Stack(
           children: [
             Container(
               color: AppColors.mainWhite,

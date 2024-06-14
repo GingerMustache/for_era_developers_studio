@@ -1,7 +1,7 @@
 part of "init_screen.dart";
 
 abstract class InitScreenModel {
-  Future<bool> setData();
+  Future<void> setData();
 }
 
 class InitScreenStore implements InitScreenModel {
@@ -9,7 +9,7 @@ class InitScreenStore implements InitScreenModel {
   final Articles articles;
 
   @override
-  Future<bool> setData() =>
+  Future<void> setData() =>
       dataClient.getFeaturedArticles(articles.articleList);
 
   InitScreenStore({

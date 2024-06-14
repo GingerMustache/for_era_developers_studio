@@ -1,9 +1,14 @@
+import 'dart:ui';
+
 import 'package:era_developers_test_flutter/common/application/app_settings.dart';
 import 'package:era_developers_test_flutter/common/constants/constants.dart';
+import 'package:era_developers_test_flutter/common/data/remote/remote_data.dart';
 import 'package:era_developers_test_flutter/common/data/repositories/news/models/article.dart';
 import 'package:era_developers_test_flutter/common/localization/i18n/strings.g.dart';
 import 'package:era_developers_test_flutter/common/presentation/app_bar/text_menu_on_tap.dart';
+import 'package:era_developers_test_flutter/common/presentation/widgets/app/body.dart';
 import 'package:era_developers_test_flutter/common/routing/routes.dart';
+import 'package:era_developers_test_flutter/common/services/mixins/loadable.dart';
 import 'package:era_developers_test_flutter/common/typography/typography.dart';
 import 'package:era_developers_test_flutter/features/news/domain/entity/articles.dart';
 import 'package:era_developers_test_flutter/features/news/domain/providers/article_provider.dart';
@@ -64,9 +69,10 @@ class _HomeScreenState extends State<HomeScreen> {
         actions: _actionButtons(context, model),
         backgroundColor: AppColors.mainWhite,
       ),
-      body: Container(
-        color: AppColors.mainWhite,
-        child: SafeArea(
+      body: Body(
+        store: model,
+        refresh: () => model.setData(),
+        children: SafeArea(
           child: CustomScrollView(
             controller: _scrollController,
             slivers: [

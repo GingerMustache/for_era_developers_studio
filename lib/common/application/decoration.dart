@@ -1,16 +1,5 @@
 part of "app_settings.dart";
 
-Decoration gradientDecoration() => const BoxDecoration(
-      gradient: LinearGradient(
-        begin: Alignment.centerLeft,
-        end: Alignment.centerRight,
-        colors: <Color>[
-          Colors.deepPurple,
-          Color.fromARGB(255, 195, 49, 221),
-        ],
-      ),
-    );
-
 Decoration mainBoxDecoration({
   required String image,
   required bool isFiltered,
