@@ -1,3 +1,21 @@
+# От GingerMoustache
+
+## Что внутри
+1. clean architecture/Mvvm/di container
+2. mobX/getIt
+3. goRouter
+4. slang
+5. pixelPerfect
+6. flutter animate
+
+Работа с скроллом через Slivers
+
+![first](https://github.com/GingerMustache/for_era_developers_studio/assets/103313278/11ceae1e-f955-47aa-b393-d89b7aa90967)
+![second](https://github.com/GingerMustache/for_era_developers_studio/assets/103313278/f15bdd13-8fee-4712-aa7c-d5449c851a16)
+![third](https://github.com/GingerMustache/for_era_developers_studio/assets/103313278/df34856d-ce2f-4948-a26d-16b8bfe804fc)
+![fourth](https://github.com/GingerMustache/for_era_developers_studio/assets/103313278/e1651f5b-955b-4781-bb93-a09eb85289e2)
+
+
 # Тестовое задание на позицию Flutter разработчика
 
 ## Задача
